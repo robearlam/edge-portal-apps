@@ -1,9 +1,7 @@
 ﻿# 🎢 Edge Portal Apps
-
 Sample application build using Mobile Blazor Bindings, to pull data from Sitecore Experience Edge for Content Hub.
 
 ## ⚠ Prerequisites
-
 - .NET Core 3.1+ SDK
 - Visual Studio 2019 with the following workloads enabled
   - Mobile development with .NET (Xamarin.Forms)
@@ -11,8 +9,8 @@ Sample application build using Mobile Blazor Bindings, to pull data from Sitecor
 - Android SDK level 28 (Pie) and above
 
 ## 🏃‍ To Run
-
 - Open Solution in Visual Studio 2019
+- Populate your Experience Edge URL & Content Hub API key in the `edge-portal-apps.Data.Constants` file.
 - Set required target system project as startup project
   - E.g. to run Android set `edge-portal-apps.Android` as startup project.
 - Hit F5 and wait
