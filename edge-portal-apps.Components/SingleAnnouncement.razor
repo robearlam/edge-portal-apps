@@ -1,0 +1,24 @@
+﻿<Card class="announcement-card">
+	<CardContent>
+		<Typography class="title" Color="@Skclusive.Core.Component.Color.Primary" GutterBottom>
+			@Announcement.Title
+		</Typography>
+		<Typography class="pos" Color="@Skclusive.Core.Component.Color.Secondary">
+			@Announcement.Description
+		</Typography>
+		<Typography Color="@Skclusive.Core.Component.Color.Primary">
+			<NavLink href="@Announcement.LinkURL" class="link" target="_blank" rel="noopener">
+				Get started now!
+				<img src="@(AssetPath + "images/icon-arrow.png")" class="arrow" />
+			</NavLink>
+		</Typography>
+	</CardContent>
+</Card>
+
+@code {
+	[Parameter]
+	public string AssetPath { get; set; }
+
+	[Parameter]
+	public Announcement Announcement { get; set; }
+}

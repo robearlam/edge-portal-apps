@@ -1,0 +1,75 @@
+﻿@inject IAnnouncementsService AnnouncementsService
+@inject INewsService NewsService
+
+<Grid Container Justify="@Justify.Center" Spacing="@Spacing.Five" class="grid-padding">
+	<Grid Item ExtraSmall="@GridSize.Twelve" Medium="@GridSize.Eight">
+		<Box>
+			<Typography Variant="@TypographyVariant.H3" Component="h3"  class="latest-news" GutterBottom>
+				Latest News
+			</Typography>
+			<List className="article-list">
+
+				@if (NewsArticles != null)
+				{
+					foreach (var newsArticle in NewsArticles)
+					{
+						<ListItem className="news-list-item">
+							<ListItemText className="news-list-item-text" 
+										Primary="@newsArticle.Title" 
+										Secondary="@newsArticle.Abstract" />					
+						</ListItem>
+					}
+				}
+				else
+				{
+					<p>Loading...</p>
+				}
+			</List>
+		</Box>
+	</Grid>
+
+	<Grid Item ExtraSmall="@GridSize.Twelve" Medium="@GridSize.Four">
+		<Box>
+			<Typography Variant="@TypographyVariant.H3" Component="h3" class="announcements" GutterBottom>
+				ANNOUNCEMENTS
+			</Typography>
+
+			@if (Announcements != null)
+			{
+				foreach (var announcement in Announcements)
+				{
+					<SingleAnnouncement Announcement="@announcement" AssetPath="@AssetPath"  />
+				}
+			}
+			else
+			{
+				<p>Loading...</p>
+			}
+		</Box>
+	</Grid>
+</Grid>
+
+@code {
+	[Parameter]
+	public string AssetPath { get; set; }
+	
+	protected List<Announcement> Announcements { get; set; }
+	protected List<NewsArticle> NewsArticles { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		Announcements = await AnnouncementsService.GetTopAnnouncements();
+		NewsArticles = await NewsService.GetTopNewsArticles();
+
+		// Dirty Poll, every 10 seconds refresh the content from Edge
+		var t = new System.Timers.Timer();
+		t.Elapsed += async (s, e) =>
+		{
+			Announcements = await AnnouncementsService.GetTopAnnouncements();
+			NewsArticles = await NewsService.GetTopNewsArticles();
+			await InvokeAsync(StateHasChanged);
+		};
+        t.Interval = 10000;
+        t.Start();
+	}
+}

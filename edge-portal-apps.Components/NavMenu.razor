@@ -1,0 +1,66 @@
+<div className={classes.navBar}>
+
+    <Container MaxWidth="@MaxWidth.Large">
+        <Grid Container Justify="@Justify.Center" Spacing="@Skclusive.Core.Component.Spacing.One" class="app-bar">
+            <Grid Item Medium="@GridSize.Two" ExtraSmall="@GridSize.Twelve" class="nav-logo">
+                
+                <Grid Container Justify="@Justify.Center" AlignItems="@AlignItems.Center" Spacing="@Skclusive.Core.Component.Spacing.Six">
+
+                    <Grid Item Medium="@GridSize.Two" ExtraSmall="@GridSize.Six">
+                        <NavLink href="" Match="NavLinkMatch.All">
+                            <img src="_content/edge-portal-apps/images/sitecore_logo.svg" width="200" height="100" />
+                        </NavLink>
+                    </Grid>
+
+                    <Grid Item Medium="@GridSize.Two" ExtraSmall="@GridSize.Six">
+                        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+                            <img src="_content/edge-portal-apps/images/menu.svg" width="20" />
+                        </button>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+
+            <Grid Item Small="@GridSize.Ten" ExtraSmall="@GridSize.Twelve" class="@NavMenuCssClass">
+                <NavLink href="#" class="link">
+                    <Typography Variant="@TypographyVariant.H6" Component="h1" GutterBottom class="navbar-link">
+                        Getting Started
+                    </Typography>
+                </NavLink>
+                <NavLink href="#" class="link">
+                    <Typography Variant="@TypographyVariant.H6" Component="h1" GutterBottom class="navbar-link">
+                        Resources
+                    </Typography>
+                </NavLink>
+                <NavLink href="#" class="link">
+                    <Typography Variant="@TypographyVariant.H6" Component="h1" GutterBottom class="navbar-link">
+                        Docs
+                    </Typography>
+                </NavLink>
+                <NavLink href="#" class="link">
+                    <Typography Variant="@TypographyVariant.H6" Component="h1" GutterBottom class="navbar-link">
+                        Community
+                    </Typography>
+                </NavLink>
+                <NavLink href="#" class="link">
+                    <Typography Variant="@TypographyVariant.H6" Component="h1" GutterBottom class="navbar-link">
+                        Blog
+                    </Typography>
+                </NavLink>
+            </Grid>
+
+        </Grid>
+    </Container>
+
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "hidden" : "grid-item";
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

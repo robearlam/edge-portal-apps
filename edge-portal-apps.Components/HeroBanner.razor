@@ -1,0 +1,16 @@
+﻿<Box MY="4" class="hero-banner">
+    <Typography class="title" Variant="@TypographyVariant.H4" Component="h1" GutterBottom>
+        @Title
+    </Typography>
+    <Typography class="subtitle" Variant="@TypographyVariant.H5" Component="h1" GutterBottom>
+        @SubTitle
+    </Typography>
+</Box>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string SubTitle { get; set; }
+}
