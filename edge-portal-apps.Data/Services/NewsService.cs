@@ -11,8 +11,8 @@ namespace EdgePortalApps.Data.Services
     {
         public async Task<List<NewsArticle>> GetTopNewsArticles(int count = 4)
         {
-            var graphQLClient = new GraphQLHttpClient("<<EXPERIENCE_EDGE_URL>>", new NewtonsoftJsonSerializer());
-            graphQLClient.HttpClient.DefaultRequestHeaders.Add("X-GQL-Token", "<<EXPERIENCE_EDGE_API_KEY>>");
+            var graphQLClient = new GraphQLHttpClient(Constants.ExperienceEdgeConnection.Url, new NewtonsoftJsonSerializer());
+            graphQLClient.HttpClient.DefaultRequestHeaders.Add("X-GQL-Token", Constants.ExperienceEdgeConnection.ApiKey);
 
             var newsArticlesRequest = new GraphQLRequest
             {
